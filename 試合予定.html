@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>試合予定 | 立命館大学ハンドボール部</title>
+
   <style>
     body {
       margin: 0;
@@ -42,6 +43,13 @@
       margin-bottom: 30px;
     }
 
+    /* ▼ テーブルのレスポンシブ対応ラッパー */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -49,12 +57,14 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      min-width: 600px; /* スマホで潰れないように設定 */
     }
 
     th, td {
       padding: 14px;
       text-align: center;
       border-bottom: 1px solid #ddd;
+      white-space: nowrap;
     }
 
     th {
@@ -95,10 +105,24 @@
       font-size: 0.9rem;
       margin-top: 40px;
     }
+
+    /* ▼ スマホ最適化 */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+      main {
+        margin: 20px auto;
+      }
+      th, td {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 
   <script>
-    // フェードイン／アウト効果
+    // フェードイン／アウト
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('loaded');
     });
@@ -123,18 +147,21 @@
 
   <main>
     <h2>2025年度 試合予定</h2>
-    <table>
-      <tr><th>日付</th><th>対戦相手</th><th>会場</th></tr>
-      <tr><td>未定</td><td>未定</td><td>未定</td></tr>
-    </table>
+
+    <div class="table-wrapper">
+      <table>
+        <tr><th>日付</th><th>対戦相手</th><th>会場</th></tr>
+        <tr><td>未定</td><td>未定</td><td>未定</td></tr>
+      </table>
+    </div>
 
     <a href="ritsumeikan_handball_complete.html" class="back">↑ TOPへ戻る</a>
   </main>
 
   <footer>
-    © 2025 立命館大学ハンドボール部 All Rights Reserved.
+    © 2025 xxxxxxxxハンドボール部 All Rights Reserved.
   </footer>
 
-  
 </body>
 </html>
+

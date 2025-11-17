@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>試合結果 | 立命館大学ハンドボール部</title>
+
   <style>
     body {
       margin: 0;
@@ -49,11 +50,13 @@
       background-color: #800000;
       color: white;
       font-size: 1.1rem;
-      padding: 10px 25px;
+      padding: 12px 25px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s;
+      width: 100%;
+      max-width: 350px;
     }
 
     .toggle-btn:hover {
@@ -69,8 +72,15 @@
     }
 
     .collapsible.active {
-      max-height: 1000px;
+      max-height: 2000px;
       opacity: 1;
+    }
+
+    /* スマホ対応：テーブル横スクロール */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 20px;
+      border-radius: 10px;
     }
 
     table {
@@ -79,14 +89,15 @@
       background-color: #faf6f6;
       border-radius: 10px;
       overflow: hidden;
+      min-width: 600px; /* スマホで潰れない */
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-top: 20px;
     }
 
     th, td {
       padding: 14px;
       text-align: center;
       border-bottom: 1px solid #ddd;
+      white-space: nowrap; /* 折り返し防止 */
     }
 
     th {
@@ -106,7 +117,6 @@
       color: green;
       font-weight: bold;
     }
-
     .lose {
       color: #c00000;
       font-weight: bold;
@@ -137,14 +147,29 @@
       font-size: 0.9rem;
       margin-top: 40px;
     }
+
+    /* ▼ スマホ最適化 */
+    @media (max-width: 600px) {
+      main {
+        margin: 20px auto;
+      }
+      header h1 {
+        font-size: 1.4rem;
+      }
+      .toggle-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+    }
   </style>
 
-<script>
-    // ページフェードイン／アウト
+  <script>
+    // ページフェードイン
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('loaded');
     });
-  
+
+    // ページ遷移フェードアウト
     document.addEventListener('click', e => {
       const link = e.target.closest('a');
       if (link && link.href && !link.target && link.getAttribute('href').startsWith('http') === false) {
@@ -155,12 +180,14 @@
         }, 400);
       }
     });
-  
-    // ▼ 折りたたみ機能（大会ごとに使い回しOK）
-    function toggleTable(id) {
+
+    // ▼ 折りたたみ
+    function toggleTable(id, event) {
       const table = document.getElementById(id);
       const btn = event.target;
+
       table.classList.toggle('active');
+
       if (table.classList.contains('active')) {
         btn.textContent = '▼ ' + btn.textContent.replace('▶ ', '');
       } else {
@@ -168,8 +195,7 @@
       }
     }
   </script>
-  
-  
+
 </head>
 
 <body>
@@ -178,51 +204,40 @@
   </header>
 
   <main>
-    <section id="results">
-      <h2>2025年度 試合結果</h2>
+    <h2>2025年度 試合結果</h2>
 
+    <!-- 秋季リーグ -->
+    <button class="toggle-btn" onclick="toggleTable('autumn', event)">▶ 秋季リーグ</button>
+    <div id="autumn" class="collapsible">
+      <div class="table-wrapper">
+        <table>
+          <tr><th>日付</th><th>対戦相手</th><th>スコア</th><th>結果</th></tr>
+          <tr><td>2025年10月19日</td><td>kt大学</td><td>34 - 32</td><td class="win">WIN</td></tr>
+          <tr><td>2025年9月28日</td><td>tr大学</td><td>24 - 25</td><td class="lose">LOSE</td></tr>
+          <tr><td>2025年9月21日</td><td>ks大学</td><td>35 - 32</td><td class="win">WIN</td></tr>
+        </table>
+      </div>
+    </div>
 
-<!-- 秋季リーグ -->
-<button class="toggle-btn" onclick="toggleTable('autumn-league', event)">▶ 秋季リーグ</button>
-<div id="autumn-league" class="collapsible">
-  <table>
-    <tr><th>日付</th><th>対戦相手</th><th>スコア</th><th>結果</th></tr>
-    <tr><td>2025年10月19日</td><td>kt大学(入れ替え戦)</td><td>34 - 32</td><td class="win">WIN</td></tr>
-    <tr><td>2025年9月28日</td><td>tr大学</td><td>24 - 25</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年9月21日</td><td>ks大学</td><td>35 - 32</td><td class="win">WIN</td></tr>
-    <tr><td>2025年9月20日</td><td>kfk大学</td><td>27 - 29</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年9月14日</td><td>mm大学</td><td>30 - 38</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年9月13日</td><td>ds大学</td><td>21 - 23</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年9月7日</td><td>ok大学</td><td>23 - 32</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年9月6日</td><td>ks大学</td><td>26 - 35</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年8月31日</td><td>ka大学</td><td>20 - 32</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年8月30日</td><td>ot大学</td><td>18 - 34</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年度秋季リーグ</td><td>1部リーグ</td><td></td><td class="10位">10位</td></tr>
-  </table>
-</div>
-
-<!-- 西日本インカレ -->
-<button class="toggle-btn" onclick="toggleTable('west-japan', event)">▶ インカレ予選</button>
-<div id="west-japan" class="collapsible">
-  <table>
-    <tr><th>日付</th><th>対戦相手</th><th>スコア</th><th>結果</th></tr>
-    <tr><td>2025年6月15日</td><td>ka大学</td><td>19 - 29</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年6月14日</td><td>tm大学</td><td>25 - 27</td><td class="lose">LOSE</td></tr>
-    <tr><td>2025年6月13日</td><td>ksy大学</td><td>25 - 22</td><td class="win">WIN</td></tr>
-    <tr><td></td><td>予選リーグ</td><td>3位</td><td class="lose">敗退</td></tr>
-  </table>
-</div>
-
-
-    </section>
+    <!-- 西日本インカレ -->
+    <button class="toggle-btn" onclick="toggleTable('west', event)">▶ インカレ予選</button>
+    <div id="west" class="collapsible">
+      <div class="table-wrapper">
+        <table>
+          <tr><th>日付</th><th>対戦相手</th><th>スコア</th><th>結果</th></tr>
+          <tr><td>2025年6月15日</td><td>ka大学</td><td>19 - 29</td><td class="lose">LOSE</td></tr>
+          <tr><td>2025年6月14日</td><td>tm大学</td><td>25 - 27</td><td class="lose">LOSE</td></tr>
+          <tr><td>2025年6月13日</td><td>ksy大学</td><td>25 - 22</td><td class="win">WIN</td></tr>
+        </table>
+      </div>
+    </div>
 
     <a href="ritsumeikan_handball_complete.html" class="back">↑ TOPへ戻る</a>
   </main>
 
   <footer>
-    © 2025 立命館大学ハンドボール部 All Rights Reserved.
+    © 2025 xxxxxxxxハンドボール部 All Rights Reserved.
   </footer>
 
-  
 </body>
 </html>
