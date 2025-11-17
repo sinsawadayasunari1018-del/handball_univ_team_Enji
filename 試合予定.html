@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>試合予定 | 立命館大学ハンドボール部</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+
+    header {
+      background-color: #800000;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #800000;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #faf6f6;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #800000;
+      color: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: #f3f3f3;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      background-color: #800000;
+      color: white;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 6px;
+      width: fit-content;
+      transition: background-color 0.3s;
+    }
+
+    .back:hover {
+      background-color: #a00000;
+    }
+
+    footer {
+      background-color: #f3f3f3;
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
+
+  <script>
+    // フェードイン／アウト効果
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+    });
+
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a');
+      if (link && link.href && !link.target && link.getAttribute('href').startsWith('http') === false) {
+        e.preventDefault();
+        document.body.classList.remove('loaded');
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 400);
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>試合予定</h1>
+  </header>
+
+  <main>
+    <h2>2025年度 試合予定</h2>
+    <table>
+      <tr><th>日付</th><th>対戦相手</th><th>会場</th></tr>
+      <tr><td>未定</td><td>未定</td><td>未定</td></tr>
+    </table>
+
+    <a href="ritsumeikan_handball_complete.html" class="back">↑ TOPへ戻る</a>
+  </main>
+
+  <footer>
+    © 2025 立命館大学ハンドボール部 All Rights Reserved.
+  </footer>
+
+  
+</body>
+</html>

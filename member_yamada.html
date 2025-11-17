@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<style>
+    body {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    // ページ表示時のフェードイン
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+    });
+  
+    // ページ遷移時のフェードアウト
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a');
+      if (link && link.href && !link.target && link.getAttribute('href').startsWith('http') === false) {
+        e.preventDefault();
+        document.body.classList.remove('loaded');
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 400);
+      }
+    });
+  </script>
+  
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山田 太郎 | 立命館大学ハンドボール部</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #800000;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    .profile {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .info {
+      max-width: 400px;
+    }
+    .info h2 {
+      color: #800000;
+      margin-bottom: 10px;
+    }
+    .info p {
+      margin: 6px 0;
+    }
+    .comment {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #faf6f6;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .back {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      background-color: #800000;
+      color: white;
+      text-decoration: none;
+      padding: 10px 25px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      width: fit-content;
+    }
+    .back:hover {
+      background-color: #a00000;
+    }
+    footer {
+      background-color: #f3f3f3;
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
+
+  <!-- ページフェードアニメーション -->
+  <style>
+    body { opacity: 0; transition: opacity 0.6s ease; }
+    body.loaded { opacity: 1; }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => document.body.classList.add('loaded'));
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a');
+      if (link && link.href && !link.target && link.getAttribute('href').startsWith('http') === false) {
+        e.preventDefault();
+        document.body.classList.remove('loaded');
+        setTimeout(() => window.location.href = link.href, 400);
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>山田 太郎</h1>
+  </header>
+
+  <div class="profile">
+    <img src="https://placehold.jp/300x400.png" alt="山田 太郎">
+    <div class="info">
+      <h2>プロフィール</h2>
+      <p><strong>No:</strong>2</p>
+      <p><strong>ポジション：</strong> ゴールキーパー（GK）</p>
+      <p><strong>学部：</strong> スポーツ健康科学部</p>
+      <p><strong>出身校：</strong> 立命館高校</p>
+      <p><strong>プレースタイル：</strong> 冷静な判断と瞬発力でゴールを守る守護神。</p>
+    </div>
+  </div>
+
+  <div class="comment">
+    <h2>コメント</h2>
+    <p>チームを支える最後の砦として、常に全力でプレーします。応援よろしくお願いします！</p>
+  </div>
+
+  <a href="members.html" class="back">← メンバー一覧に戻る</a>
+
+  <footer>
+    © 2025 立命館大学ハンドボール部 All Rights Reserved.
+  </footer>
+  
+</body>
+</html>

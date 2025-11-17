@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メンバー紹介 | 立命館大学ハンドボール部</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+
+    header {
+      background-color: #800000;
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      letter-spacing: 1px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #800000;
+      margin-bottom: 40px;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    /* メンバー一覧グリッド */
+    .members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+
+    .member {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(128, 0, 0, 0.25);
+    }
+
+    .member img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding: 15px;
+      background: linear-gradient(to top, #fff, #f8f5f5);
+    }
+
+    .member-info h3 {
+      margin: 10px 0 5px;
+      color: #800000;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .member-info p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* TOPへ戻るボタン */
+    .back {
+      display: block;
+      text-align: center;
+      margin: 60px auto 40px;
+      background-color: #800000;
+      color: white;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: bold;
+      width: fit-content;
+      transition: background-color 0.3s;
+    }
+
+    .back:hover {
+      background-color: #a00000;
+    }
+
+    footer {
+      background-color: #f3f3f3;
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <script>
+    // ページフェードイン／アウト
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+
+      // メンバーデータ
+      const members = [
+        { name: "山田 太郎", img: "https://placehold.jp/220x220.png?text=Yamada", link: "member_yamada.html" },
+        { name: "佐藤 花子", img: "https://placehold.jp/220x220.png?text=Sato", link: "member_sato.html" },
+        { name: "田中 一郎", img: "https://placehold.jp/220x220.png?text=Tanaka", link: "member_tanaka.html" },
+        { name: "鈴木 次郎", img: "https://placehold.jp/220x220.png?text=Suzuki", link: "member_suzuki.html" },
+        { name: "高橋 美咲", img: "https://placehold.jp/220x220.png?text=Takahashi", link: "member_takahashi.html" },
+        { name: "伊藤 健", img: "https://placehold.jp/220x220.png?text=Ito", link: "member_ito.html" },
+        { name: "渡辺 愛", img: "https://placehold.jp/220x220.png?text=Watanabe", link: "member_watanabe.html" },
+        { name: "中村 翔", img: "https://placehold.jp/220x220.png?text=Nakamura", link: "member_nakamura.html" },
+        { name: "加藤 優", img: "https://placehold.jp/220x220.png?text=Kato", link: "member_kato.html" },
+        { name: "小林 彩", img: "https://placehold.jp/220x220.png?text=Kobayashi", link: "member_kobayashi.html" }
+      ];
+
+      const container = document.querySelector('.members');
+
+      members.forEach(m => {
+        const a = document.createElement('a');
+        a.href = m.link;
+        a.className = 'member';
+        a.innerHTML = `
+          <img src="${m.img}" alt="${m.name}">
+          <div class="member-info">
+            <h3>${m.name}</h3>
+          </div>
+        `;
+        container.appendChild(a);
+      });
+    });
+
+    // ページ遷移フェードアウト
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a');
+      if (link && link.href && !link.target && !link.getAttribute('href').startsWith('http')) {
+        e.preventDefault();
+        document.body.classList.remove('loaded');
+        setTimeout(() => window.location.href = link.href, 400);
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>メンバー紹介</h1>
+  </header>
+
+  <main>
+    <h2>2025年度 部員一覧</h2>
+    <div class="members"><!-- JSで生成 --></div>
+
+    <a href="ritsumeikan_handball_complete.html" class="back">↑ TOPへ戻る</a>
+  </main>
+
+  <footer>
+    © 2025 立命館大学ハンドボール部 All Rights Reserved.
+  </footer>
+  
+</body>
+</html>
